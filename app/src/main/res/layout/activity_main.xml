@@ -33,13 +33,10 @@
 
     </RelativeLayout>
 
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/fragmentVP"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_510sdp">
-
-    </androidx.viewpager.widget.ViewPager>
+        android:layout_height="@dimen/_510sdp"/>
 
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/viewpagertab"
