@@ -47,6 +47,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
 
         mainfeed obj=feedAL.get(position);
         holder.quotesTV.setText(obj.getQuotes());
+
         holder.imageRL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

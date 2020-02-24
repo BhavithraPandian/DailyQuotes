@@ -32,12 +32,6 @@
             android:textSize="@dimen/_20sdp" />
 
     </RelativeLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/fragmentVP"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_510sdp"/>
-
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/viewpagertab"
         android:layout_width="match_parent"
@@ -69,4 +63,11 @@
         app:stl_titleOffset="24dp"
         app:stl_underlineColor="#4D000000"
         app:stl_underlineThickness="1dp" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fragmentVP"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
 </LinearLayout>
