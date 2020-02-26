@@ -44,16 +44,22 @@ public class SearchFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        searchAL.add(new search(R.drawable.home,"Angry"));
-        searchAL.add(new search(R.drawable.home,"Sad"));
-        searchAL.add(new search(R.drawable.home,"Love"));
-        searchAL.add(new search(R.drawable.home,"Family"));
-        searchAL.add(new search(R.drawable.home,"Friends"));
-        searchAL.add(new search(R.drawable.home,"Life"));
+        searchAL.add(new search(R.drawable.angry_emoji,"Angry"));
+        searchAL.add(new search(R.drawable.love_emoji,"Love"));
         searchAL.add(new search(R.drawable.home,"Success"));
+        searchAL.add(new search(R.drawable.friends,"Friends"));
+        searchAL.add(new search(R.drawable.home,"Life"));
         searchAL.add(new search(R.drawable.home,"Work"));
+        searchAL.add(new search(R.drawable.sad_emoji,"Sad"));
         searchAL.add(new search(R.drawable.home,"Time"));
+        searchAL.add(new search(R.drawable.family,"Family"));
         searchAL.add(new search(R.drawable.home,"Alone"));
+        searchAL.add(new search(R.drawable.birthday,"Birthday"));
+        searchAL.add(new search(R.drawable.brother,"Brother"));
+        searchAL.add(new search(R.drawable.college,"College"));
+        searchAL.add(new search(R.drawable.break_up,"Break up"));
+        searchAL.add(new search(R.drawable.home,"Success"));
+        searchAL.add(new search(R.drawable.father,"Father's Day"));
 
     }
 }

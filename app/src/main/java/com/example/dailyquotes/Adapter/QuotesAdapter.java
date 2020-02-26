@@ -29,6 +29,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
     ArrayList<mainfeed> feedAL=new ArrayList<>();
     Context mcontext;
 
+
     public QuotesAdapter(Context mcontext, ArrayList<mainfeed> feedAL) {
         this.feedAL = feedAL;
         this.mcontext = mcontext;
