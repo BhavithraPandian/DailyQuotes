@@ -57,7 +57,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
                 mcontext.startActivity(intent);
             }
         });
-        Blurry.with(mcontext).radius(4).from( BitmapFactory.decodeResource(mcontext.getResources(), obj.getBgimg())).into(holder.bgimIV);
+        Blurry.with(mcontext).radius(2).from( BitmapFactory.decodeResource(mcontext.getResources(), obj.getBgimg())).into(holder.bgimIV);
     }
 
     @Override

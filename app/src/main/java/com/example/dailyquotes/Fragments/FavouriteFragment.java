@@ -26,8 +26,6 @@ public class FavouriteFragment extends Fragment {
 
     EditText emailET, passwordET;
     Button Submit;
-    private FirebaseAuth mAuth;
-    private static final String TAG = "testttttttt";
     
     public FavouriteFragment() {
     }
@@ -36,37 +34,8 @@ public class FavouriteFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favourite, container, false);
-        initUI(view);
-
-        Submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signin(emailET.getText().toString().trim(),passwordET.getText().toString().trim());
-            }
-        });
-
         return view;
     }
 
-    private void initUI(View view) {
-        emailET = view.findViewById(R.id.emailTV);
-        passwordET = view.findViewById(R.id.passTV);
-        Submit = view.findViewById(R.id.signBT);
-        mAuth = FirebaseAuth.getInstance();
-    }
 
-    public void signin(String email, String password) {
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    Log.i(TAG, "onComplete: "+user.getEmail());
-                }
-                else{
-                    Log.i(TAG, "onComplete: Failure");
-                }
-            }
-        });
-    }
 }

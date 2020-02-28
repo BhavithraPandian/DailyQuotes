@@ -14,11 +14,26 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dailyquotes.AngryCategoryActivity;
+import com.example.dailyquotes.BirthdayCategoryActivity;
+import com.example.dailyquotes.BreakupCategoryActivity;
+import com.example.dailyquotes.BrotherSisterCategoryActivity;
+import com.example.dailyquotes.CollegeCategoryActivity;
+import com.example.dailyquotes.FailureCategoryActivity;
+import com.example.dailyquotes.FamilyCategoryActivity;
+import com.example.dailyquotes.FatherDayCategoryActivity;
 import com.example.dailyquotes.Fragments.SearchFragment;
+import com.example.dailyquotes.FriendCategoryActivity;
+import com.example.dailyquotes.HappyCategoryActivity;
+import com.example.dailyquotes.LifeCategoryActivity;
 import com.example.dailyquotes.LoveCategoryActivity;
 import com.example.dailyquotes.MainActivity;
 import com.example.dailyquotes.Models.search;
 import com.example.dailyquotes.R;
+import com.example.dailyquotes.SadCategoryActivity;
+import com.example.dailyquotes.SchoolCategoryActivity;
+import com.example.dailyquotes.SuccessCategoryActivity;
+import com.example.dailyquotes.TimeCategoryActivity;
+import com.example.dailyquotes.WorkCategoryActivity;
 
 import java.util.ArrayList;
 
@@ -31,7 +46,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public SearchAdapter(Context mcontext, ArrayList<search> searchAL) {
         this.searchAL = searchAL;
         this.mcontext = mcontext;
-
     }
 
     @NonNull
@@ -54,10 +68,69 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
                     Intent intent = new Intent(mcontext, AngryCategoryActivity.class);
                     mcontext.startActivity(intent);
-                }
-                else if (holder.cattitTV.getText().toString().trim() == "Love") {
+                } else if (holder.cattitTV.getText().toString().trim() == "Birthday") {
+
+                    Intent intent = new Intent(mcontext, BirthdayCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                } else if (holder.cattitTV.getText().toString().trim() == "Break up") {
+
+                    Intent intent = new Intent(mcontext, BreakupCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                } else if (holder.cattitTV.getText().toString().trim() == "Brother-Sister") {
+
+                    Intent intent = new Intent(mcontext, BrotherSisterCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                } else if (holder.cattitTV.getText().toString().trim() == "College") {
+
+                    Intent intent = new Intent(mcontext, CollegeCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                } else if (holder.cattitTV.getText().toString().trim() == "Failure") {
+
+                    Intent intent = new Intent(mcontext, FailureCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                } else if (holder.cattitTV.getText().toString().trim() == "Family") {
+
+                    Intent intent = new Intent(mcontext, FamilyCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                } else if (holder.cattitTV.getText().toString().trim() == "Father's Day") {
+
+                    Intent intent = new Intent(mcontext, FatherDayCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                } else if (holder.cattitTV.getText().toString().trim() == "Friends") {
+
+                    Intent intent = new Intent(mcontext, FriendCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                } else if (holder.cattitTV.getText().toString().trim() == "Happy") {
+
+                    Intent intent = new Intent(mcontext, HappyCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                } else if (holder.cattitTV.getText().toString().trim() == "Life") {
+
+                    Intent intent = new Intent(mcontext, LifeCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                }else if (holder.cattitTV.getText().toString().trim() == "Love") {
 
                     Intent intent = new Intent(mcontext, LoveCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                }else if (holder.cattitTV.getText().toString().trim() == "Sad") {
+
+                    Intent intent = new Intent(mcontext, SadCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                }else if (holder.cattitTV.getText().toString().trim() == "School") {
+
+                    Intent intent = new Intent(mcontext, SchoolCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                }else if (holder.cattitTV.getText().toString().trim() == "Success") {
+
+                    Intent intent = new Intent(mcontext, SuccessCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                }else if (holder.cattitTV.getText().toString().trim() == "Work") {
+
+                    Intent intent = new Intent(mcontext, WorkCategoryActivity.class);
+                    mcontext.startActivity(intent);
+                }else if (holder.cattitTV.getText().toString().trim() == "Time") {
+
+                    Intent intent = new Intent(mcontext, TimeCategoryActivity.class);
                     mcontext.startActivity(intent);
                 }
             }

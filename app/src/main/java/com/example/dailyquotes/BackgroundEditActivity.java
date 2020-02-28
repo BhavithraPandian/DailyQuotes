@@ -35,17 +35,17 @@ public class BackgroundEditActivity extends AppCompatActivity {
         }
         initUI();
 
-        bgAL.add(new backgroundedit(R.mipmap.aa));
-        bgAL.add(new backgroundedit(R.mipmap.bb));
-        bgAL.add(new backgroundedit(R.mipmap.cc));
-        bgAL.add(new backgroundedit(R.mipmap.dd));
-        bgAL.add(new backgroundedit(R.mipmap.ee));
-        bgAL.add(new backgroundedit(R.mipmap.cc));
-        bgAL.add(new backgroundedit(R.mipmap.aa));
-        bgAL.add(new backgroundedit(R.mipmap.ee));
-        bgAL.add(new backgroundedit(R.mipmap.cc));
-        bgAL.add(new backgroundedit(R.mipmap.bb));
-        bgAL.add(new backgroundedit(R.mipmap.dd));
+        bgAL.add(new backgroundedit(R.mipmap.p60));
+        bgAL.add(new backgroundedit(R.mipmap.p61));
+        bgAL.add(new backgroundedit(R.mipmap.p62));
+        bgAL.add(new backgroundedit(R.mipmap.p63));
+        bgAL.add(new backgroundedit(R.mipmap.p64));
+        bgAL.add(new backgroundedit(R.mipmap.p65));
+        bgAL.add(new backgroundedit(R.mipmap.p66));
+        bgAL.add(new backgroundedit(R.mipmap.p67));
+        bgAL.add(new backgroundedit(R.mipmap.p68));
+        bgAL.add(new backgroundedit(R.mipmap.p69));
+        bgAL.add(new backgroundedit(R.mipmap.p70));
 
         adapterRV=new BackgroundEditAdapter(getApplicationContext(),bgAL,BackgroundEditActivity.this);
         bgRV.setHasFixedSize(true);

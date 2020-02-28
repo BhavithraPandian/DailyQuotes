@@ -46,11 +46,11 @@ public class HomeFeedFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        quotesAL.add(new mainfeed("\"A deadline is negative inspiration.Still,it's better than no inspiration at all.\"",R.mipmap.aa));
-        quotesAL.add(new mainfeed("A goal without a plan is just wish.",R.mipmap.bb));
-        quotesAL.add(new mainfeed("If you want a happy goal,tie it to a goal,not to people or thing.",R.mipmap.cc));
-        quotesAL.add(new mainfeed("I owe my success to having listened respectfully to the very best advice, and then going away and doing the exact opposite.",R.mipmap.dd));
-        quotesAL.add(new mainfeed("Success is not final; failure is not fatal: It is the courage to continue that counts.",R.mipmap.ee));
+        quotesAL.add(new mainfeed("\"A deadline is negative inspiration.Still,it's better than no inspiration at all.\"",R.mipmap.p55));
+        quotesAL.add(new mainfeed("A goal without a plan is just wish.",R.mipmap.p56));
+        quotesAL.add(new mainfeed("If you want a happy goal,tie it to a goal,not to people or thing.",R.mipmap.p57));
+        quotesAL.add(new mainfeed("I owe my success to having listened respectfully to the very best advice, and then going away and doing the exact opposite.",R.mipmap.p88));
+        quotesAL.add(new mainfeed("Success is not final; failure is not fatal: It is the courage to continue that counts.",R.mipmap.p9));
 
     }
 }
