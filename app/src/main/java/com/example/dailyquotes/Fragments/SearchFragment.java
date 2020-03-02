@@ -56,10 +56,10 @@ public class SearchFragment extends Fragment {
         searchAL.add(new search(R.drawable.happy, "Happy"));
         searchAL.add(new search(R.drawable.life, "Life"));
         searchAL.add(new search(R.drawable.love_emoji, "Love"));
+        searchAL.add(new search(R.drawable.work, "Motivational"));
         searchAL.add(new search(R.drawable.sad_emoji, "Sad"));
         searchAL.add(new search(R.drawable.school, "School"));
         searchAL.add(new search(R.drawable.success, "Success"));
-        searchAL.add(new search(R.drawable.work, "Work"));
         searchAL.add(new search(R.drawable.time, "Time"));
 
     }

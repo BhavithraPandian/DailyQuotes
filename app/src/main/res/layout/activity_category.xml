@@ -17,21 +17,21 @@
             android:src="@drawable/arrow_back" />
 
         <TextView
-            android:id="@+id/fatherdayTX"
+            android:id="@+id/categoryTX"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/backarrowIV"
             android:fontFamily="@font/thin_block"
             android:paddingLeft="@dimen/_20sdp"
-            android:text="Father's Day"
+            android:text="Angry"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp" />
 
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fatherdayRV"
+        android:id="@+id/categoryRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

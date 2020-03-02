@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,8 @@ import com.example.dailyquotes.Models.mainfeed;
 import com.example.dailyquotes.R;
 
 import java.util.ArrayList;
+
+import static com.example.dailyquotes.R.id.favIV;
 
 public class HomeFeedFragment extends Fragment {
 
@@ -53,4 +56,6 @@ public class HomeFeedFragment extends Fragment {
         quotesAL.add(new mainfeed("Success is not final; failure is not fatal: It is the courage to continue that counts.",R.mipmap.p9));
 
     }
+
+
 }

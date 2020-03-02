@@ -38,7 +38,7 @@
             </TextView>
 
             <ImageView
-                android:id="@+id/favIM"
+                android:id="@+id/favIV"
                 android:layout_width="@dimen/_73sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentBottom="true"
@@ -48,7 +48,7 @@
                 android:src="@drawable/favorite_border_black"/>
 
             <ImageView
-                android:id="@+id/saveIM"
+                android:id="@+id/saveIV"
                 android:layout_width="@dimen/_73sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentBottom="true"
@@ -56,10 +56,10 @@
                 android:backgroundTint="@color/white"
                 android:padding="@dimen/_4sdp"
                 android:src="@drawable/download_black"
-                android:layout_toRightOf="@id/favIM"/>
+                android:layout_toRightOf="@id/favIV"/>
 
             <ImageView
-                android:id="@+id/shareIM"
+                android:id="@+id/shareIV"
                 android:layout_width="@dimen/_73sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentBottom="true"
@@ -67,7 +67,7 @@
                 android:backgroundTint="@color/white"
                 android:padding="@dimen/_4sdp"
                 android:src="@drawable/share"
-                android:layout_toRightOf="@id/saveIM"/>
+                android:layout_toRightOf="@id/saveIV"/>
 
             <ImageView
                 android:id="@+id/editIV"
@@ -78,7 +78,7 @@
                 android:background="@color/black"
                 android:padding="@dimen/_4sdp"
                 android:backgroundTint="@color/white"
-                android:layout_toRightOf="@id/shareIM"/>
+                android:layout_toRightOf="@id/shareIV"/>
 
         </RelativeLayout>
 

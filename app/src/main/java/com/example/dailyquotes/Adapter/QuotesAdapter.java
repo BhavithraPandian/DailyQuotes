@@ -44,19 +44,32 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        mainfeed obj=feedAL.get(position);
+        final mainfeed obj=feedAL.get(position);
         holder.quotesTV.setText(obj.getQuotes());
 
-        holder.imageRL.setOnClickListener(new View.OnClickListener() {
+        holder.editIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mcontext, EditActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mcontext.startActivity(intent);
+
             }
         });
+/*
+        holder.favB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (obj.getFav()){
+                    holder.favB.setImageResource(R.drawable.heart_red);
+                }
+                else {
+                    holder.favB.setImageResource(R.drawable.heartblack);
+                }
+            }
+        });*/
         Blurry.with(mcontext).radius(2).from( BitmapFactory.decodeResource(mcontext.getResources(), obj.getBgimg())).into(holder.bgimIV);
     }
 
@@ -69,13 +82,16 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView quotesTV;
-        ImageView bgimIV;
-        RelativeLayout imageRL;
+        ImageView bgimIV,editIV;
+        /*RelativeLayout imageRL;*/
+        /*ImageView favB;*/
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             quotesTV=itemView.findViewById(R.id.quoteTV);
             bgimIV=itemView.findViewById(R.id.bgIV);
-            imageRL=itemView.findViewById(R.id.imageRL);
+            editIV=itemView.findViewById(R.id.editIV);
+           /* favB=itemView.findViewById(R.id.favIV);*/
         }
     }
 }
