@@ -8,6 +8,6 @@
         android:layout_height="match_parent"
         android:padding="@dimen/_2sdp"
 
-        android:id="@+id/bg_editIV"/>
+        android:id="@+id/bgeditIV"/>
 
 </RelativeLayout>

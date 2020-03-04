@@ -37,7 +37,7 @@ public class HomeFeedFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_homefeed,container,false);
 
         quotesRV = view.findViewById(R.id.recycleRV);
-        adapterRV = new QuotesAdapter(getContext(),quotesAL);
+        adapterRV = new QuotesAdapter(getContext(),quotesAL,getActivity());
         quotesRV.setHasFixedSize(true);
         quotesRV.setLayoutManager(new LinearLayoutManager(getActivity()));
         quotesRV.setAdapter(adapterRV);

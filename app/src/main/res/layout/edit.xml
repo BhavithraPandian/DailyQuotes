@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/p117"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/backgroundIV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/p114"
+        android:scaleType="centerCrop"/>
 
     <TextView
+        android:id="@+id/quoteTV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/serif"
@@ -17,20 +23,38 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/backgroundIV"
+        android:id="@+id/backarrowIV"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:padding="@dimen/_10sdp"
+        android:src="@drawable/arrow_back" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bgchangerRV"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="@dimen/_60sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_marginRight="@dimen/_3sdp"
+        android:layout_marginBottom="@dimen/_50sdp"
+        android:orientation="horizontal">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <RelativeLayout
+        android:id="@+id/editoptiontabRL"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_25sdp"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_20sdp">
 
         <ImageView
-            android:id="@+id/bgchangerIV"
+            android:id="@+id/bg_editIV"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="match_parent"
             android:padding="@dimen/_1sdp"
@@ -40,7 +64,7 @@
             android:id="@+id/fontchangerIV"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/bgchangerIV"
+            android:layout_toRightOf="@+id/bg_editIV"
             android:src="@drawable/font_download_white" />
 
         <ImageView

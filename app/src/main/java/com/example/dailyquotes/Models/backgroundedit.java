@@ -3,9 +3,6 @@ package com.example.dailyquotes.Models;
 public class backgroundedit {
     int editimg;
 
-    public backgroundedit() {
-    }
-
     public backgroundedit(int editimg) {
         this.editimg = editimg;
     }
