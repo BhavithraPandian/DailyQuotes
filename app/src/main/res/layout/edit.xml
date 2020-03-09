@@ -7,8 +7,8 @@
         android:id="@+id/backgroundIV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/p114"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        />
 
     <TextView
         android:id="@+id/quoteTV"
@@ -17,7 +17,6 @@
         android:fontFamily="@font/serif"
         android:gravity="center"
         android:padding="@dimen/_20sdp"
-        android:text="A deadline is negative inspiration.Still,it's better than no inspiration at all."
         android:textColor="@color/white"
         android:textSize="@dimen/_35sdp"
         android:textStyle="bold" />

@@ -24,7 +24,7 @@ public class BackgroundEditAdapter extends RecyclerView.Adapter<BackgroundEditAd
     ArrayList<backgroundedit> bgeditAL = new ArrayList<>();
     Context mcontext;
     Activity parentAC;
-    /*int choice;*/
+    int choice;
 
     public BackgroundEditAdapter(Context mcontext, ArrayList<backgroundedit> bgeditAL, Activity parentAC) {
         this.bgeditAL = bgeditAL;
@@ -32,12 +32,12 @@ public class BackgroundEditAdapter extends RecyclerView.Adapter<BackgroundEditAd
         this.parentAC = parentAC;
     }
 
-  /*  public BackgroundEditAdapter(Context mcontext, ArrayList<backgroundedit> bgeditAL, Activity parentAC, int choice) {
+    public BackgroundEditAdapter(Context mcontext, ArrayList<backgroundedit> bgeditAL, Activity parentAC, int choice) {
         this.bgeditAL = bgeditAL;
         this.mcontext = mcontext;
         this.parentAC = parentAC;
         this.choice = choice;
-    }*/
+    }
 
     @NonNull
     @Override
@@ -47,16 +47,28 @@ public class BackgroundEditAdapter extends RecyclerView.Adapter<BackgroundEditAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final backgroundedit obj = bgeditAL.get(position);
         Log.i("testtt", "onBindViewHolder: " + obj);
-        holder.imgIV.setImageResource(obj.getEditimg());
-        holder.imgIV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((EditActivity) view.getContext()).OnImageClick(obj.getEditimg());
-            }
-        });
+
+        if (choice == 1) {
+            holder.imgIV.setImageResource(obj.getEditimg());
+            holder.imgIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((EditActivity) view.getContext()).OnImageClick(obj.getEditimg());
+                }
+            });
+        } else if (choice == 2) {
+            holder.imgIV.setImageResource(obj.getEditimg());
+            holder.imgIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.i("test1", "onClick: "+position);
+                    ((EditActivity) view.getContext()).OnFontClick(obj.getFontstyle(),position);
+                }
+            });
+        }
 
     }
 
