@@ -21,12 +21,13 @@ import java.util.Map;
 
 public class EditActivity extends AppCompatActivity {
 
-    ArrayList<backgroundedit> bg_thumbnailAl = new ArrayList<>();
+    ArrayList<backgroundedit> bg_thumbnailAL = new ArrayList<>();
+    ArrayList<backgroundedit> font_thumbnailAL = new ArrayList<>();
     BackgroundEditAdapter adapter;
-    RecyclerView bg_thumnailRV;
-    ImageView backIV, bg_changerIV, bgIV;
+    RecyclerView thumbnailRV;
+    ImageView backIV, bg_changerIV, bgIV,font_changerIV;
     TextView quoteTV;
-    int editimg;
+    /*int editimg;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +42,13 @@ public class EditActivity extends AppCompatActivity {
 
         initUI();
 
-        Intent intent=getIntent();
+        final Intent intent=getIntent();
         String qoute = intent.getStringExtra("quote");
+        Integer image=intent.getIntExtra("image",0);
 
         quoteTV.setText(qoute);
+        bgIV.setImageResource(image);
+
         backIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,26 +59,48 @@ public class EditActivity extends AppCompatActivity {
         bg_changerIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bg_thumbnailAl.clear();
-                bg_thumbnailAl.add(new backgroundedit(R.mipmap.p10));
-                bg_thumbnailAl.add(new backgroundedit(R.mipmap.p70));
-                bg_thumbnailAl.add(new backgroundedit(R.mipmap.p40));
-                adapter = new BackgroundEditAdapter(getBaseContext(), bg_thumbnailAl, EditActivity.this);
-                bg_thumnailRV.setLayoutManager(new LinearLayoutManager(EditActivity.this, RecyclerView.HORIZONTAL, false));
-                bg_thumnailRV.setHasFixedSize(true);
-                bg_thumnailRV.setAdapter(adapter);
+
+                bg_thumbnailAL.clear();
+
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p10));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p70));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p40));
+
+                adapter = new BackgroundEditAdapter(getBaseContext(), bg_thumbnailAL, EditActivity.this);
+                thumbnailRV.setLayoutManager(new LinearLayoutManager(EditActivity.this, RecyclerView.HORIZONTAL, false));
+                thumbnailRV.setHasFixedSize(true);
+                thumbnailRV.setAdapter(adapter);
             }
         });
+
+        font_changerIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                font_thumbnailAL.clear();
+
+                font_thumbnailAL.add(new backgroundedit(R.mipmap.p30));
+
+                adapter=new BackgroundEditAdapter(getBaseContext(),font_thumbnailAL,EditActivity.this);
+                thumbnailRV.setLayoutManager(new LinearLayoutManager(EditActivity.this, RecyclerView.HORIZONTAL, false));
+                thumbnailRV.setHasFixedSize(true);
+                thumbnailRV.setAdapter(adapter);
+            }
+        });
+
     }
 
     private void initUI() {
         backIV = findViewById(R.id.backarrowIV);
-        bg_thumnailRV = findViewById(R.id.bgchangerRV);
+        thumbnailRV = findViewById(R.id.changerRV);
         bgIV=findViewById(R.id.backgroundIV);
         bg_changerIV = findViewById(R.id.bg_editIV);
         quoteTV=findViewById(R.id.quoteTV);
+        font_changerIV=findViewById(R.id.fontchangerIV);
     }
+
     public void OnImageClick(int editimg) {
+
         bgIV.setImageResource(editimg);
     }
 }

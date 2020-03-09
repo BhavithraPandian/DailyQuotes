@@ -32,7 +32,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/bgchangerRV"
+        android:id="@+id/changerRV"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
         android:layout_alignParentBottom="true"

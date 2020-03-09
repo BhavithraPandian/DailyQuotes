@@ -21,49 +21,58 @@ import java.util.zip.Inflater;
 
 public class BackgroundEditAdapter extends RecyclerView.Adapter<BackgroundEditAdapter.ViewHolder> {
 
-    ArrayList<backgroundedit> bgeditAL=new ArrayList<>();
+    ArrayList<backgroundedit> bgeditAL = new ArrayList<>();
     Context mcontext;
     Activity parentAC;
+    /*int choice;*/
 
-    public BackgroundEditAdapter( Context mcontext,ArrayList<backgroundedit> bgeditAL,Activity parentAC) {
+    public BackgroundEditAdapter(Context mcontext, ArrayList<backgroundedit> bgeditAL, Activity parentAC) {
         this.bgeditAL = bgeditAL;
         this.mcontext = mcontext;
         this.parentAC = parentAC;
     }
 
+  /*  public BackgroundEditAdapter(Context mcontext, ArrayList<backgroundedit> bgeditAL, Activity parentAC, int choice) {
+        this.bgeditAL = bgeditAL;
+        this.mcontext = mcontext;
+        this.parentAC = parentAC;
+        this.choice = choice;
+    }*/
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(mcontext).inflate(R.layout.bg_edit_item,parent,false);
+        View view = LayoutInflater.from(mcontext).inflate(R.layout.bg_edit_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final backgroundedit obj=bgeditAL.get(position);
-        Log.i("testtt", "onBindViewHolder: "+obj);
+        final backgroundedit obj = bgeditAL.get(position);
+        Log.i("testtt", "onBindViewHolder: " + obj);
         holder.imgIV.setImageResource(obj.getEditimg());
         holder.imgIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((EditActivity)view.getContext()).OnImageClick(obj.getEditimg());
+                ((EditActivity) view.getContext()).OnImageClick(obj.getEditimg());
             }
         });
 
     }
+
 
     @Override
     public int getItemCount() {
         return bgeditAL.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgIV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgIV=itemView.findViewById(R.id.bgeditIV);
+            imgIV = itemView.findViewById(R.id.bgeditIV);
         }
 
     }

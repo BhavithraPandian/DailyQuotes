@@ -99,6 +99,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
             public void onClick(View v) {
                 Intent intent = new Intent(mcontext, EditActivity.class);
                 intent.putExtra("quote",obj.getQuotes());
+                intent.putExtra("image",obj.getBgimg());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mcontext.startActivity(intent);
 
@@ -124,12 +125,12 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
 
             if (bitmap != null) {
                 ContextWrapper cw = new ContextWrapper(mcontext);
-                String directory_path = Environment.getExternalStorageDirectory().getPath() + "/mypdf/";
+                String directory_path = Environment.getExternalStorageDirectory().getPath() + "/DailyQuotes/";
                 File file = new File(directory_path);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                String targetPdf = directory_path + Calendar.getInstance().get(Calendar.MINUTE) + Calendar.getInstance().get(Calendar.SECOND) + "-1.jpg";
+                String targetPdf = directory_path + Calendar.getInstance().get(Calendar.MINUTE) + Calendar.getInstance().get(Calendar.SECOND) + ".jpg";
                 File filePath = new File(targetPdf);
                 if (!filePath.exists()) {
                     Log.d("path", filePath.toString());
@@ -139,9 +140,9 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                         fos.flush();
                         fos.close();
-                        Toast.makeText(mcontext, "Successful !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mcontext, "Download Successful !", Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
-                        Toast.makeText(mcontext, "Failed !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mcontext, "Download Failed !", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                         Log.i("test1", "saveImage: " + e.toString());
 
