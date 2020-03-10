@@ -816,6 +816,7 @@ public class CategoryActivity extends AppCompatActivity {
         categoryRV = findViewById(R.id.categoryRV);
         backIV = findViewById(R.id.backarrowIV);
         headerTV=findViewById(R.id.categoryTX);
+
     }
 
 }

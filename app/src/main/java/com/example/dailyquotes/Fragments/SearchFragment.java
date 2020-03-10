@@ -1,10 +1,14 @@
 package com.example.dailyquotes.Fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +26,7 @@ public class SearchFragment extends Fragment {
     ArrayList<search> searchAL = new ArrayList<>();
     SearchAdapter adapterRV;
     RecyclerView searchRV;
-
+    TextView searchTV;
 
     public SearchFragment() {
     }
@@ -43,6 +47,33 @@ public class SearchFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+ /*       searchTV =(TextView) getView().findViewById(R.id.searchTV);
+        searchTV.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+
+            }
+
+            private void filter(String category) {
+                ArrayList<search> filteredAL = new ArrayList<>();
+                for (search item : searchAL) {
+                    if (item.getCaterogyTX().toLowerCase().contains(category.toLowerCase())) ;
+                    filteredAL.add(item);
+                }
+                adapterRV.filterList(filteredAL);
+            }
+        });*/
 
         searchAL.add(new search(R.drawable.angry_emoji, "Angry"));
         searchAL.add(new search(R.drawable.birthday, "Birthday"));
@@ -63,4 +94,5 @@ public class SearchFragment extends Fragment {
         searchAL.add(new search(R.drawable.time, "Time"));
 
     }
+
 }

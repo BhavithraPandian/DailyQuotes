@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PictureDrawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,6 +94,24 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
             }
         });
 
+        holder.shareIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("test10", "onClick: "+obj.getQuotes());
+
+                BitmapDrawable draw = (BitmapDrawable) holder.bgimIV.getDrawable();
+                Bitmap bitmap = draw.getBitmap();
+                String imgBitmapPath= MediaStore.Images.Media.insertImage(mcontext.getContentResolver(),bitmap,"title",null);
+                Uri imgBitmapUri=Uri.parse(imgBitmapPath);
+
+                Intent sharingIntent=new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("image/*");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT,obj.getQuotes());
+                sharingIntent.putExtra(Intent.EXTRA_STREAM,imgBitmapUri);
+
+                mcontext.startActivity(Intent.createChooser(sharingIntent,"Share via"));
+            }
+        });
 
         holder.editIV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,7 +197,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView quotesTV;
-        ImageView bgimIV, editIV, saveIV;
+        ImageView bgimIV, editIV, saveIV,shareIV;
         /*RelativeLayout imageRL;*/
         /*ImageView favB;*/
 
@@ -188,6 +207,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
             bgimIV = itemView.findViewById(R.id.bgIV);
             editIV = itemView.findViewById(R.id.editIV);
             saveIV = itemView.findViewById(R.id.saveIV);
+            shareIV=itemView.findViewById(R.id.shareIV);
             /* favB=itemView.findViewById(R.id.favIV);*/
         }
     }

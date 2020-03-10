@@ -157,6 +157,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         return searchAL.size();
     }
 
+    public void filterList(ArrayList<search> filteredAL) {
+        searchAL=filteredAL;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView catimgIV;

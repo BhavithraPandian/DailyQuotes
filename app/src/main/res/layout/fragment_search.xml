@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/searchRV"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
         android:layout_marginLeft="@dimen/_25sdp"
@@ -15,15 +16,17 @@
         android:backgroundTint="@color/matt_gray">
 
         <TextView
+            android:id="@+id/searchTV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:hint="Search by category"
             android:layout_toRightOf="@id/searchbarIV"
             android:fontFamily="@font/euphoria"
-            android:text="search by category"
             android:textColor="@color/black"
-            android:textSize="@dimen/_22sdp"></TextView>
+            android:textSize="@dimen/_22sdp"/>
+
 
         <ImageView
             android:id="@+id/searchbarIV"
