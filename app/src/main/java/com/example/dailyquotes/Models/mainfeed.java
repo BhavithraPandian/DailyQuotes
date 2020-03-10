@@ -1,6 +1,8 @@
 package com.example.dailyquotes.Models;
 
-public class mainfeed {
+import java.util.ArrayList;
+
+public class mainfeed extends ArrayList<mainfeed> {
     String quotes;
     int bgimg;
    /* Boolean fav;*/

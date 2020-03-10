@@ -95,11 +95,11 @@ public class EditActivity extends AppCompatActivity {
 
                 font_thumbnailAL.clear();
 
-                font_thumbnailAL.add(new backgroundedit(R.drawable.sans_serif_thumbnail));
-                font_thumbnailAL.add(new backgroundedit(R.drawable.sans_serif_thumbnail));
-                font_thumbnailAL.add(new backgroundedit(R.drawable.sans_serif_thumbnail));
-                font_thumbnailAL.add(new backgroundedit(R.drawable.sans_serif_thumbnail));
-                font_thumbnailAL.add(new backgroundedit(R.drawable.sans_serif_thumbnail));
+                font_thumbnailAL.add(new backgroundedit(R.drawable.thum));
+                font_thumbnailAL.add(new backgroundedit(R.drawable.thum));
+                font_thumbnailAL.add(new backgroundedit(R.drawable.thum));
+                font_thumbnailAL.add(new backgroundedit(R.drawable.thum));
+                font_thumbnailAL.add(new backgroundedit(R.drawable.thum));
 
                 adapter=new BackgroundEditAdapter(getBaseContext(),font_thumbnailAL,EditActivity.this,2);
                 thumbnailRV.setLayoutManager(new LinearLayoutManager(EditActivity.this, RecyclerView.HORIZONTAL, false));
@@ -185,13 +185,13 @@ public class EditActivity extends AppCompatActivity {
 
     public void OnFontClick(String fontstyle,int position) {
         switch (position){
-            case 0:quoteTV.setTypeface(Typeface.MONOSPACE);
+            case 0:quoteTV.setTypeface(Typeface.createFromAsset(getAssets(),"font/crimson_bold.ttf"));
             break;
-            case 1:quoteTV.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
+            case 1:quoteTV.setTypeface(Typeface.createFromAsset(getAssets(),"font/disney.ttf"));
             break;
-            case 2:quoteTV.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            case 2:quoteTV.setTypeface(Typeface.createFromAsset(getAssets(),"font/arima_madurai_regular.ttf"));
             break;
-            case 3:quoteTV.setTypeface(Typeface.SANS_SERIF);
+            case 3:quoteTV.setTypeface(Typeface.createFromAsset(getAssets(),"font/euphoria.otf"));
             break;
         }
 

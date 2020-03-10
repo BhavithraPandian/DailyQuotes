@@ -39,6 +39,9 @@ dependencies {
     implementation "jp.wasabeef:blurry:3.0.0"
     //Tab View
     implementation 'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
+    //swipe refresh layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     //scroll gallery thumbnail
     //implementation 'com.veinhorn.scrollgalleryview:library:1.2.8'
+
 }
