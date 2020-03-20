@@ -15,10 +15,12 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -41,7 +43,7 @@ public class EditActivity extends AppCompatActivity {
     ArrayList<backgroundedit> font_thumbnailAL = new ArrayList<>();
     BackgroundEditAdapter adapter;
     RecyclerView thumbnailRV;
-    ImageView backIV, bg_changerIV, bgIV,font_changerIV,copytoclipIV,downloadIV;
+    ImageView backIV, bg_changerIV, bgIV,font_changerIV,copytoclipIV,downloadIV,shareIV;
     TextView quoteTV;
     /*int editimg;*/
 
@@ -78,9 +80,24 @@ public class EditActivity extends AppCompatActivity {
 
                 bg_thumbnailAL.clear();
 
-                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p10));
-                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p70));
-                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p40));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p95));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p96));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p97));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p98));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p99));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p100));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p101));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p102));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p103));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p104));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p105));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p106));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p107));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p108));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p109));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p110));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p111));
+                bg_thumbnailAL.add(new backgroundedit(R.mipmap.p112));
 
                 adapter = new BackgroundEditAdapter(getBaseContext(), bg_thumbnailAL, EditActivity.this,1);
                 thumbnailRV.setLayoutManager(new LinearLayoutManager(EditActivity.this, RecyclerView.HORIZONTAL, false));
@@ -95,7 +112,7 @@ public class EditActivity extends AppCompatActivity {
 
                 font_thumbnailAL.clear();
 
-                font_thumbnailAL.add(new backgroundedit(R.drawable.thum));
+                font_thumbnailAL.add(new backgroundedit(R.drawable.bauhaus));
                 font_thumbnailAL.add(new backgroundedit(R.drawable.thum));
                 font_thumbnailAL.add(new backgroundedit(R.drawable.thum));
                 font_thumbnailAL.add(new backgroundedit(R.drawable.thum));
@@ -162,6 +179,24 @@ public class EditActivity extends AppCompatActivity {
             }
         });
 
+        shareIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                BitmapDrawable draw = (BitmapDrawable) bgIV.getDrawable();
+                Bitmap bitmap = draw.getBitmap();
+                String imgBitmapPath= MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(),bitmap,"title",null);
+                Uri imgBitmapUri=Uri.parse(imgBitmapPath);
+
+                Intent sharingIntent=new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("image/*");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT,quoteTV.getText());
+                sharingIntent.putExtra(Intent.EXTRA_STREAM,imgBitmapUri);
+
+                startActivity(Intent.createChooser(sharingIntent,"Share via"));
+            }
+        });
+
     }
 
     private void initUI() {
@@ -176,6 +211,8 @@ public class EditActivity extends AppCompatActivity {
         copytoclipIV=findViewById(R.id.contentcopyIV);
 
         downloadIV=findViewById(R.id.downloadIV);
+
+        shareIV=findViewById(R.id.shareIV);
     }
 
     public void OnImageClick(int editimg) {
