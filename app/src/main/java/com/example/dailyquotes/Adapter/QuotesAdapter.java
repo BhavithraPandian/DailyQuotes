@@ -154,6 +154,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
                 }
                 File imagePath = new File(mcontext.getCacheDir(), "images");
                 File newFile = new File(imagePath, "image.png");
+                /*Add path in manifest file and create filepath xml file in res*/
                 Uri imgBitmapUri = FileProvider.getUriForFile(mcontext, BuildConfig.APPLICATION_ID + ".fileprovider", newFile);
 
                 if (imgBitmapUri != null) {
@@ -213,6 +214,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
                         String text = (String) holder.quotesTV.getText();
 
                         Canvas canvas = new Canvas(bitmap);
+                        Log.i("s1", "saveImage: "+canvas);
                         TextPaint paint = new TextPaint();
                         paint.setAntiAlias(true);
                         paint.setColor(Color.WHITE); // Text Color

@@ -2,6 +2,7 @@ package com.example.dailyquotes;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +14,8 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -21,6 +24,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -33,6 +39,7 @@ import com.example.dailyquotes.Models.backgroundedit;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
@@ -163,10 +170,39 @@ public class EditActivity extends AppCompatActivity {
                             FileOutputStream fos = null;
                             try {
                                 fos = new FileOutputStream(filePath);
+
+                                String text = (String) quoteTV.getText();
+
+                               /* Bitmap workingBitmap = Bitmap.createBitmap(bitmap);
+                                Bitmap mutableBitmap = workingBitmap.copy(Bitmap.Config.ARGB_8888, true);
+                                Canvas canvas = new Canvas(mutableBitmap);
+                                Log.i("d1", "onClick: "+canvas);*/
+
+                                Canvas canvas = new Canvas(bitmap);
+                                TextPaint paint = new TextPaint();
+                                paint.setAntiAlias(true);
+                                paint.setColor(Color.WHITE); // Text Color
+                                paint.setTypeface(Typeface.createFromAsset(getAssets(), "font/euphoria.otf"));
+                                paint.setTextSize(40);
+
+                                int width = 330;
+                                Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+                                float spacingMultiplier = 1;
+                                float spacingAddition = 0;
+                                boolean includePadding = false;
+
+                                StaticLayout myStaticLayout = new StaticLayout(text, paint, width, alignment, spacingMultiplier, spacingAddition, includePadding);
+
+                                canvas.save();
+                                canvas.translate(100, 50);
+                                myStaticLayout.draw(canvas);
+                                canvas.restore();
+
                                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                                 fos.flush();
                                 fos.close();
                                 Toast.makeText(getApplicationContext(), "Download Successful !", Toast.LENGTH_SHORT).show();
+
                             } catch (Exception e) {
                                 Toast.makeText(getApplicationContext(), "Download Failed !", Toast.LENGTH_SHORT).show();
                                 e.printStackTrace();
@@ -185,15 +221,65 @@ public class EditActivity extends AppCompatActivity {
 
                 BitmapDrawable draw = (BitmapDrawable) bgIV.getDrawable();
                 Bitmap bitmap = draw.getBitmap();
-                String imgBitmapPath= MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(),bitmap,"title",null);
-                Uri imgBitmapUri=Uri.parse(imgBitmapPath);
+                Log.i("t1", "onClick: "+bitmap);
 
-                Intent sharingIntent=new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("image/*");
-                sharingIntent.putExtra(Intent.EXTRA_TEXT,quoteTV.getText());
-                sharingIntent.putExtra(Intent.EXTRA_STREAM,imgBitmapUri);
+                // save bitmap to cache directory
+                try {
 
-                startActivity(Intent.createChooser(sharingIntent,"Share via"));
+                    File cachePath = new File(getCacheDir(), "images");
+                    cachePath.mkdirs();
+                    FileOutputStream stream = new FileOutputStream(cachePath + "/image.png"); // overwrites this image every time
+                    Log.i("t2", "onClick: ");
+                    String text = (String) quoteTV.getText();
+                    Log.i("t3", "onClick: "+text);
+
+                    Bitmap workingBitmap = Bitmap.createBitmap(bitmap);
+                    Bitmap mutableBitmap = workingBitmap.copy(Bitmap.Config.ARGB_8888, true);
+                    Canvas canvas = new Canvas(mutableBitmap);
+                    Log.i("d1", "onClick: "+canvas);
+
+//                    Canvas canvas = new Canvas(bitmap);
+                    TextPaint paint = new TextPaint();
+                    paint.setAntiAlias(true);
+                    paint.setColor(Color.WHITE); // Text Color
+                    paint.setTypeface(Typeface.createFromAsset(getAssets(), "font/euphoria.otf"));
+                    paint.setTextSize(40);
+
+                    int width = 330;
+                    Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+                    float spacingMultiplier = 1;
+                    float spacingAddition = 0;
+                    boolean includePadding = false;
+
+                    StaticLayout myStaticLayout = new StaticLayout(text, paint, width, alignment, spacingMultiplier, spacingAddition, includePadding);
+
+                    canvas.save();
+                    canvas.translate(100, 50);
+                    myStaticLayout.draw(canvas);
+                    canvas.restore();
+
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    stream.close();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                File imagePath = new File(getCacheDir(), "images");
+                File newFile = new File(imagePath, "image.png");
+                /*Add path in manifest file and create filepath xml file in res*/
+                Uri imgBitmapUri = FileProvider.getUriForFile(EditActivity.this, BuildConfig.APPLICATION_ID + ".fileprovider", newFile);
+                Log.i("t4", "onClick: "+imgBitmapUri);
+
+                if (imgBitmapUri != null) {
+                    Log.i("t5", "onClick: ");
+                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                    sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    sharingIntent.setType("image/*");
+                    sharingIntent.putExtra(Intent.EXTRA_STREAM, imgBitmapUri);
+                    startActivity(Intent.createChooser(sharingIntent, "Share via"));
+
+                }
             }
         });
 
