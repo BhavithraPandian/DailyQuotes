@@ -37,8 +37,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dailyquotes.BuildConfig;
 import com.example.dailyquotes.EditActivity;
 import com.example.dailyquotes.Fragments.HomeFeedFragment;
 import com.example.dailyquotes.MainActivity;
@@ -113,24 +115,55 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Log.i("test10", "onClick: " + obj.getQuotes());
-
                 BitmapDrawable draw = (BitmapDrawable) holder.bgimIV.getDrawable();
                 Bitmap bitmap = draw.getBitmap();
-                String imgBitmapPath = MediaStore.Images.Media.insertImage(mcontext.getContentResolver(), bitmap, "title", null);
-                Uri imgBitmapUri = Uri.parse(imgBitmapPath);
 
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("image/*");
-//                sharingIntent.putExtra(Intent.EXTRA_TEXT,obj.getQuotes());
-//                Canvas canvas=new Canvas(bitmap);
-//                Paint paint=new Paint();
-//                canvas.drawBitmap(bitmap,0,0,paint);
-//                canvas.drawText(obj.getQuotes(),10,10,paint);
-//                bitmap.compress(Bitmap.CompressFormat.JPEG,90,out);
-//                String staticLayout= StaticLayout.Builder.obtain(obj.getQuotes(),0,0,);
-                sharingIntent.putExtra(Intent.EXTRA_STREAM, imgBitmapUri);
+                // save bitmap to cache directory
+                try {
+                    File cachePath = new File(mcontext.getCacheDir(), "images");
+                    cachePath.mkdirs();
+                    FileOutputStream stream = new FileOutputStream(cachePath + "/image.png"); // overwrites this image every time
 
-                mcontext.startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                    String text = (String) holder.quotesTV.getText();
+
+                    Canvas canvas = new Canvas(bitmap);
+                    TextPaint paint = new TextPaint();
+                    paint.setAntiAlias(true);
+                    paint.setColor(Color.WHITE); // Text Color
+                    paint.setTypeface(Typeface.createFromAsset(mcontext.getAssets(), "font/euphoria.otf"));
+                    paint.setTextSize(40);
+
+                    int width = 330;
+                    Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+                    float spacingMultiplier = 1;
+                    float spacingAddition = 0;
+                    boolean includePadding = false;
+
+                    StaticLayout myStaticLayout = new StaticLayout(text, paint, width, alignment, spacingMultiplier, spacingAddition, includePadding);
+
+                    canvas.save();
+                    canvas.translate(100, 50);
+                    myStaticLayout.draw(canvas);
+                    canvas.restore();
+
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    stream.close();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                File imagePath = new File(mcontext.getCacheDir(), "images");
+                File newFile = new File(imagePath, "image.png");
+                Uri imgBitmapUri = FileProvider.getUriForFile(mcontext, BuildConfig.APPLICATION_ID + ".fileprovider", newFile);
+
+                if (imgBitmapUri != null) {
+                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                    sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    sharingIntent.setType("image/*");
+                    sharingIntent.putExtra(Intent.EXTRA_STREAM, imgBitmapUri);
+                    mcontext.startActivity(Intent.createChooser(sharingIntent, "Share via"));
+
+                }
             }
         });
 
@@ -153,7 +186,6 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
 
         Log.i("test1", "saveImage: " + holder.bgimIV.getDrawable());
 
-        //ActivityCompat.requestPermissions(parentAC, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         if (ActivityCompat.checkSelfPermission(mcontext, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(parentAC,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
@@ -176,23 +208,18 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
                     Log.d("path", filePath.toString());
                     FileOutputStream fos = null;
                     try {
-                        Log.i("save1", "saveImage: ");
                         fos = new FileOutputStream(filePath);
 
-                        String text= (String) holder.quotesTV.getText();
-                        Log.i("save2", "saveImage: "+text);
+                        String text = (String) holder.quotesTV.getText();
 
                         Canvas canvas = new Canvas(bitmap);
-
                         TextPaint paint = new TextPaint();
                         paint.setAntiAlias(true);
                         paint.setColor(Color.WHITE); // Text Color
-                        paint.setTypeface(Typeface.createFromAsset(mcontext.getAssets(),"font/disney.ttf"));
-                        paint.setTextSize(10* mcontext.getResources().getDisplayMetrics().density); // Text Size
-                        Log.i("paint", "saveImage: "+paint.getTextSize());
+                        paint.setTypeface(Typeface.createFromAsset(mcontext.getAssets(), "font/euphoria.otf"));
+                        paint.setTextSize(40);
 
-                        int width = 200;
-                        Log.i("save3", "saveImage: "+width);
+                        int width = 330;
                         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
                         float spacingMultiplier = 1;
                         float spacingAddition = 0;
@@ -200,14 +227,9 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
 
                         StaticLayout myStaticLayout = new StaticLayout(text, paint, width, alignment, spacingMultiplier, spacingAddition, includePadding);
 
-//                        float height = myStaticLayout.getHeight();
-                        float height=50;
-                        Log.i("save4", "saveImage: "+height);
-
                         canvas.save();
-                        canvas.translate(width, height);
+                        canvas.translate(100, 50);
                         myStaticLayout.draw(canvas);
-                        Log.i("save4", "saveImage: "+canvas);
                         canvas.restore();
 
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
